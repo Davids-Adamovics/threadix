@@ -1,6 +1,7 @@
 package net.threadix.model;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,9 @@ import lombok.ToString;
 public class Community {
 
     @Id
+    @Column(name = "ID_COMMUNITY")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private int communityId;
 
     @Column(nullable = false)

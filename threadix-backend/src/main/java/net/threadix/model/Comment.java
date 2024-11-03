@@ -3,6 +3,7 @@ package net.threadix.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,9 @@ import lombok.ToString;
 public class Comment {
 
     @Id
+    @Column(name = "ID_COMMENT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private int commentId;
 
     @Column(columnDefinition = "TEXT", nullable = false)

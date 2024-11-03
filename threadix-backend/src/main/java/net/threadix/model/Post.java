@@ -1,6 +1,7 @@
 package net.threadix.model;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,9 @@ import java.time.LocalDateTime;
 public class Post {
 
     @Id
+    @Column(name = "ID_POST")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(value = AccessLevel.NONE)
     private int postId;
 
     @Column(nullable = false)
