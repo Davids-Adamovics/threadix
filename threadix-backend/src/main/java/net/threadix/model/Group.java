@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "GROUPS")
+@Table(name = "USER_GROUPS")
 @Entity
 public class Group {
 

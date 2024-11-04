@@ -3,11 +3,13 @@ package net.threadix.service.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import net.threadix.model.Comment;
 import net.threadix.repo.ICommentRepo;
 import net.threadix.service.ICommentService;
 
+@Service
 public class ICommentServiceImpl implements ICommentService {
 
     @Autowired
