@@ -18,7 +18,7 @@ public class Post {
 
     @Id
     @Column(name = "ID_POST")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(value = AccessLevel.NONE)
     private int postId;
 
@@ -38,12 +38,18 @@ public class Post {
     @Column(name = "likes_count", nullable = false)
     private int likesCount;
 
-    public Post(int postId, String title, String content, LocalDateTime timestamp, enumVisibility visibility, int likesCount) {
-        this.postId = postId;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID_USER", nullable = false)
+    private User user;
+
+    public Post(String title, String content, LocalDateTime timestamp, enumVisibility visibility,
+            int likesCount, User user) {
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
         this.visibility = visibility;
         this.likesCount = likesCount;
+        this.user = user; // Set the user
     }
+
 }

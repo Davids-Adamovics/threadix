@@ -33,33 +33,35 @@ public class ThreadixApplication {
                         @Override
                         public void run(String... args) throws Exception {
                                 // Create and save a User
-                                User user = new User(1, "john_doe", "John Doe", "john@example.com", "password123", null,
+                                User user = new User("john_doe", "John Doe", "john@example.com", "password123", null,
                                                 "Just a tech enthusiast.", false);
                                 userRepo.save(user);
 
                                 // Create and save a Post
-                                Post post = new Post(1, "First Post", "This is the content of the first post.",
-                                                LocalDateTime.now(), enumVisibility.PUBLIC, 0);
+                                Post post = new Post("First Post", "This is the content of the first post.",
+                                                LocalDateTime.now(), enumVisibility.PUBLIC, 0, user);
                                 postRepo.save(post);
 
-                                // Create and save a Community
-                                Community community = new Community(1, "Tech Enthusiasts",
-                                                "A community for tech lovers.", "PUBLIC", 100);
-                                communityRepo.save(community);
-
-                                // Create and save a Comment
-                                Comment comment = new Comment(1, "Great post!", LocalDateTime.now(), 10);
+                                // Create and save a Comment, associate it with the Post
+                                Comment comment = new Comment("Great post!", LocalDateTime.now(), 10, user, post);
                                 commentRepo.save(comment);
 
+                                // Create and save a Community
+                                Community community = new Community("Tech Enthusiasts", "A community for tech lovers.",
+                                                "PUBLIC", 100);
+                                communityRepo.save(community);
+
                                 // Create and save ProfileSettings
-                                ProfileSettings profileSettings = new ProfileSettings(1, enumPrivacy_level.PUBLIC, enumNotification_settings.ON);
+                                ProfileSettings profileSettings = new ProfileSettings(enumPrivacy_level.PUBLIC,
+                                                enumNotification_settings.ON);
                                 profileSettingsRepo.save(profileSettings);
 
                                 // Create and save a Group
-                                Group group = new Group(1, "Developers", "A group for software developers.", 50);
+                                Group group = new Group("Developers", "A group for software developers.", 50);
                                 groupRepo.save(group);
                         }
 
                 };
         }
+
 }

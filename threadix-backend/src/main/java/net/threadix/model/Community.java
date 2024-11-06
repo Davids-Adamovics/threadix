@@ -1,11 +1,8 @@
 package net.threadix.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +14,7 @@ public class Community {
 
     @Id
     @Column(name = "ID_COMMUNITY")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(value = AccessLevel.NONE)
     private int communityId;
 
@@ -33,8 +30,10 @@ public class Community {
     @Column(name = "member_count", nullable = false)
     private int memberCount;
 
-    public Community(int communityId, String name, String description, String visibility, int memberCount) {
-        this.communityId = communityId;
+    @ManyToMany(mappedBy = "communities")
+    private List<User> users; // Optional for bidirectionality
+
+    public Community(String name, String description, String visibility, int memberCount) {
         this.name = name;
         this.description = description;
         this.visibility = visibility;

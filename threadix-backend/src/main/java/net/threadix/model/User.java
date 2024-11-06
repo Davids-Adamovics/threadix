@@ -1,16 +1,8 @@
 package net.threadix.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,8 +15,7 @@ public class User {
     @Id
     @Column(name = "ID_USER")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(value = AccessLevel.NONE)
-    private int userId; 
+    private int userId;
 
     @Column(nullable = false, unique = true, name = "USERNAME")
     private String username;
@@ -42,13 +33,35 @@ public class User {
     private String profilePicture;
 
     @Column(length = 500, name = "BIO")
-    private String bio; // bio
+    private String bio;
 
     @Column(name = "IS_ANNONYMOUS", nullable = false)
     private boolean isAnonymous;
 
-    public User(int userId, String username, String displayName, String email, String password, String profilePicture, String bio, boolean isAnonymous) {
-        this.userId = userId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PROFILE_SETTINGS_ID", referencedColumnName = "ID_PROFILE_SETTINGS")
+    private ProfileSettings profileSettings;
+
+    @ManyToMany
+    @JoinTable(
+        name = "USER_GROUPS_JOIN",
+        joinColumns = @JoinColumn(name = "USER_ID"),
+        inverseJoinColumns = @JoinColumn(name = "GROUP_ID")
+    )
+    private List<Group> groups;
+
+    @ManyToMany
+    @JoinTable(
+        name = "USER_COMMUNITIES_JOIN",
+        joinColumns = @JoinColumn(name = "USER_ID"),
+        inverseJoinColumns = @JoinColumn(name = "COMMUNITY_ID")
+    )
+    private List<Community> communities;
+
+    @OneToMany(mappedBy = "user")  // Referencing the "user" field in Comment entity
+    private List<Comment> comments;
+
+    public User(String username, String displayName, String email, String password, String profilePicture, String bio, boolean isAnonymous) {
         this.username = username;
         this.displayName = displayName;
         this.email = email;
