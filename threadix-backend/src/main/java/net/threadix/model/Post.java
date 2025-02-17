@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +30,9 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Column(name = "image")
+    private String imagePath;
+
     @Column(nullable = false)
     private LocalDateTime timestamp;
 
@@ -38,18 +43,17 @@ public class Post {
     @Column(name = "likes_count", nullable = false)
     private int likesCount;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID_USER", nullable = false)
-    private User user;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public Post(String title, String content, LocalDateTime timestamp, enumVisibility visibility,
-            int likesCount, User user) {
+            int likesCount, List<Comment> comments) {
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
         this.visibility = visibility;
         this.likesCount = likesCount;
-        this.user = user; // Set the user
+        this.comments = comments != null ? comments : new ArrayList<>();
     }
 
 }

@@ -34,9 +34,9 @@ public class IPostServiceImpl implements IPostService {
 
     @Override
     public ArrayList<Post> retrieveAll() throws Exception {
-        if (postRepo.count() == 0)
-            throw new Exception("Nav neviena Post!");
-
+        if (postRepo.count() == 0) {
+            return new ArrayList<>();
+        }
         return (ArrayList<Post>) postRepo.findAll();
     }
 

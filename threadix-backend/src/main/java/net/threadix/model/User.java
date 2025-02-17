@@ -2,6 +2,8 @@ package net.threadix.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -42,26 +44,11 @@ public class User {
     @JoinColumn(name = "PROFILE_SETTINGS_ID", referencedColumnName = "ID_PROFILE_SETTINGS")
     private ProfileSettings profileSettings;
 
-    @ManyToMany
-    @JoinTable(
-        name = "USER_GROUPS_JOIN",
-        joinColumns = @JoinColumn(name = "USER_ID"),
-        inverseJoinColumns = @JoinColumn(name = "GROUP_ID")
-    )
-    private List<Group> groups;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-        name = "USER_COMMUNITIES_JOIN",
-        joinColumns = @JoinColumn(name = "USER_ID"),
-        inverseJoinColumns = @JoinColumn(name = "COMMUNITY_ID")
-    )
-    private List<Community> communities;
-
-    @OneToMany(mappedBy = "user")  // Referencing the "user" field in Comment entity
-    private List<Comment> comments;
-
-    public User(String username, String displayName, String email, String password, String profilePicture, String bio, boolean isAnonymous) {
+    public User(String username, String displayName, String email, String password, String profilePicture, String bio,
+            boolean isAnonymous, List<Comment> comments) {
         this.username = username;
         this.displayName = displayName;
         this.email = email;
@@ -69,5 +56,7 @@ public class User {
         this.profilePicture = profilePicture;
         this.bio = bio;
         this.isAnonymous = isAnonymous;
+        this.comments = comments != null ? comments : new ArrayList<>();
     }
+
 }

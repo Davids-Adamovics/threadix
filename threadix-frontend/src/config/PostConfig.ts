@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-const API_URL1 = 'http://localhost:8080/post/all';
-
+const API_GET_ALL_POSTS = 'http://localhost:8080/api/posts/all';
 
 class UserService {
-    getAllPreces() {
-        return axios.get(API_URL1);
+    getAllPosts() {
+        return axios.get(API_GET_ALL_POSTS);
     }
 }
 

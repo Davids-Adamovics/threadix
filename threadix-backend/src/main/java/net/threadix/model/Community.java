@@ -30,9 +30,6 @@ public class Community {
     @Column(name = "member_count", nullable = false)
     private int memberCount;
 
-    @ManyToMany(mappedBy = "communities")
-    private List<User> users; // Optional for bidirectionality
-
     public Community(String name, String description, String visibility, int memberCount) {
         this.name = name;
         this.description = description;

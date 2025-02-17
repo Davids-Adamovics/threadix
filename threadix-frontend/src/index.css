@@ -1,0 +1,24 @@
+:root {
+  /* Colors */
+  --primary-accent-color: rgba(210, 188, 250, 1);
+  --secondary-accent-color: rgba(140, 82, 255, 1);
+  --background-color: white;
+  --text-heading-color: rgba(140, 82, 255, 1);
+  --text-paragraph-color: rgba(255, 255, 255, 1);
+
+  /* Fonts */
+  --font-main: "Verdana", "Geneva", sans-serif;
+  --font-size-base: 16px;
+
+}
+
+body {
+  background-color: #0e1113;
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  color: var(--text-paragraph-color);
+
+  h1 {
+    color: var(--text-heading-color);
+  }
+}

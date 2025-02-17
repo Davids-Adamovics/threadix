@@ -32,18 +32,18 @@ public class Comment {
     private int likesCount;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to User
-    private User user;  // Add this field to associate a comment with a user
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)  // Foreign key to Post
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
     public Comment(String content, LocalDateTime timestamp, int likesCount, User user, Post post) {
         this.content = content;
         this.timestamp = timestamp;
         this.likesCount = likesCount;
-        this.user = user;  // Associate the comment with the user
-        this.post = post;  // Associate the comment with the post
+        this.user = user;
+        this.post = post;
     }
 }

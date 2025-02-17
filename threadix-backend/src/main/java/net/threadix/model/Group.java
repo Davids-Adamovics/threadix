@@ -27,9 +27,6 @@ public class Group {
     @Column(name = "member_count", nullable = false)
     private int memberCount;
 
-    @ManyToMany(mappedBy = "groups")
-    private List<User> users; // Optional for bidirectionality
-
     public Group(String name, String description, int memberCount) {
         this.name = name;
         this.description = description;
