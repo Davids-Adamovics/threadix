@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import "../../styles/posts/create-post.scss";
 
 const CreatePost = () => {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [post, setPost] = useState<any>(null);
 
@@ -17,43 +18,45 @@ const CreatePost = () => {
         e.preventDefault();
 
         try {
-            // Upload image first
-            let imageUrl = '';
+            let imageUrl = "";
             if (image) {
                 const formData = new FormData();
-                formData.append('file', image);
+                formData.append("file", image);
 
-                const uploadResponse = await axios.post('http://localhost:8080/api/posts/upload', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
-
-                imageUrl = uploadResponse.data; // URL of the uploaded image (relative path)
+                const uploadResponse = await axios.post(
+                    "http://localhost:8080/api/posts/upload",
+                    formData,
+                    {
+                        headers: { "Content-Type": "multipart/form-data" },
+                    }
+                );
+                imageUrl = uploadResponse.data;
             }
 
-            // Create the post with title, content, and image URL
             const postData = {
                 title,
                 content,
-                imagePath: imageUrl, // Save the image URL
+                imagePath: imageUrl,
                 timestamp: new Date(),
-                visibility: 'PUBLIC', // Replace with the correct visibility if needed
+                visibility: "PUBLIC",
                 likesCount: 0,
             };
 
-            const response = await axios.post('http://localhost:8080/api/posts', postData);
+            const response = await axios.post(
+                "http://localhost:8080/api/posts",
+                postData
+            );
             setPost(response.data);
         } catch (error) {
-            console.error('Error creating post', error);
+            console.error("Error creating post", error);
         }
     };
 
     return (
-        <div>
+        <div className="create-post-container">
             <h2>Create Post</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className="create-post-form">
+                <div className="form-group">
                     <label>Title:</label>
                     <input
                         type="text"
@@ -62,7 +65,7 @@ const CreatePost = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Content:</label>
                     <textarea
                         value={content}
@@ -70,21 +73,16 @@ const CreatePost = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label>Upload Image:</label>
-                    <input
-                        type="file"
-                        onChange={handleFileChange}
-                    />
+                    <input type="file" onChange={handleFileChange} />
                 </div>
-                <button type="submit">Create Post</button>
+                <button type="submit" className="submit-button">
+                    Create Post
+                </button>
             </form>
 
-            {post && (
-                <div>
-                    <h3>Post Created Successfully!</h3>
-                </div>
-            )}
+            {post && <div className="post-success">Post Created Successfully!</div>}
         </div>
     );
 };
