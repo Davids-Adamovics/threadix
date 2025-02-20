@@ -1,7 +1,17 @@
 package net.threadix.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Repository;
 import net.threadix.model.User;
 
-public interface IUserRepo extends CrudRepository<User, Integer> {
+@EnableJpaRepositories
+@Repository
+public interface IUserRepo extends JpaRepository<User, Integer> {
+
+    Optional<User> findOneByEmailAndPassword(String email, String password);
+
+    User findByEmail(String email);
+
 }
