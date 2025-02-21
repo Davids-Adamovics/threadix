@@ -5,17 +5,17 @@ import './index.css'
 import MainPage from './pages/posts/page-post.tsx'
 import Header from './pages/common/Header.tsx'
 import CreatePost from './pages/posts/CreatePost.tsx'
-import Login from './pages/Auth/Login.tsx'
-import Register from './pages/Auth/Register.tsx'
 import PrivateRoute from './pages/Auth/AuthGuard.tsx';
+import AuthenticationPage from './pages/Auth/AuthenticationPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<AuthenticationPage />} />
+        <Route path="/posts/create" element={<CreatePost />} />
+        
         
         {/* Private Route to protect /posts and /post/create */}
         <Route element={<PrivateRoute />}>

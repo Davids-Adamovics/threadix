@@ -80,7 +80,6 @@ const MainPage: React.FC = () => {
           ))}
         </div>
       )}
-      <UploadPost />
     </div>
   );
 };
