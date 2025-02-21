@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET = "wS0Dingx0sar7u+S8CYvKBxa5+A5yuEm5HQlRpzdbOU="; // Replace with a strong secret phrase
+    private static final String SECRET = "wS0Dingx0sar7u+S8CYvKBxa5+A5yuEm5HQlRpzdbOU=";
     private static final SecretKey secretKey = Keys.hmacShaKeyFor(Base64.getEncoder().encode(SECRET.getBytes()));
 
     // Generate a JWT token
