@@ -3,20 +3,19 @@ package net.threadix.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import jakarta.servlet.http.HttpServletRequest;
 import net.threadix.DTO.LoginDTO;
 import net.threadix.DTO.UserDTO;
 import net.threadix.model.LoginMessage;
+import net.threadix.model.User;
+import net.threadix.repo.IUserRepo;
 import net.threadix.service.IUserService;
-
+import net.threadix.util.JwtUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -39,12 +38,25 @@ public class userController {
         return ResponseEntity.ok(loginResponse);
     }
 
-    // // Get logged-in user's profile information
-    // @GetMapping("/profile")
-    // public ResponseEntity<UserDTO> getLoggedInUser(@RequestHeader("Authorization") String authToken) {
-    //     // Assume the auth token contains the user's ID or username
-    //     UserDTO userProfile = userService.getUserProfile(authToken);
-    //     return ResponseEntity.ok(userProfile);
-    // }
-    
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private IUserRepo userRepo;
+
+    @GetMapping("/profile")
+    public User getUserProfile(HttpServletRequest request) {
+        // Extract the token from the request
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new RuntimeException("Missing or invalid Authorization header");
+        }
+
+        String token = authHeader.substring(7);
+        String username = jwtUtil.extractUsername(token);
+
+        // Fetch user from the database
+        return userRepo.findByUsername(username);
+    }
 }

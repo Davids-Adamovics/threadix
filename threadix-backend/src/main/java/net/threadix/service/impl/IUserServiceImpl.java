@@ -1,19 +1,16 @@
 package net.threadix.service.impl;
 
-import java.lang.foreign.Linker.Option;
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import net.threadix.DTO.LoginDTO;
 import net.threadix.DTO.UserDTO;
 import net.threadix.model.LoginMessage;
 import net.threadix.model.User;
 import net.threadix.repo.IUserRepo;
 import net.threadix.service.IUserService;
+import net.threadix.util.JwtUtil;
 
 @Service
 public class IUserServiceImpl implements IUserService {
@@ -97,12 +94,14 @@ public class IUserServiceImpl implements IUserService {
             Boolean isPassRight = passwordEncoder.matches(password, encodedPassword);
 
             if (isPassRight) {
-                return new LoginMessage("Login Success", true);
+                // Generate JWT
+                String token = JwtUtil.generateToken(user1.getUsername());
+                return new LoginMessage("Login Success", true, token);
             } else {
-                return new LoginMessage("Password Not Match", false);
+                return new LoginMessage("Password Not Match", false, null);
             }
         } else {
-            return new LoginMessage("Email not exists", false);
+            return new LoginMessage("Email not exists", false, null);
         }
     }
 

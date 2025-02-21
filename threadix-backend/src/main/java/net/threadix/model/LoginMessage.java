@@ -9,9 +9,11 @@ public class LoginMessage {
     
     String message;
     Boolean status;
+    String token;
 
-    public LoginMessage(String message, Boolean status) {
+    public LoginMessage(String message, Boolean status, String token) {
         this.message = message;
         this.status = status;
+        this.token = token;
     }
 }

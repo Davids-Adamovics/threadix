@@ -11,7 +11,7 @@ function Authentication() {
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const res = await axios.post("http://localhost:8080/api/v1/users/login", {
@@ -19,16 +19,19 @@ function Authentication() {
         password,
       });
 
+      // Check if login was successful
       if (res.data.message === "Login Success") {
-        localStorage.setItem("authToken", "true");
-        navigate("/posts");
+        // Store the JWT token in localStorage
+        localStorage.setItem("authToken", res.data.token); // Store actual token here
+        navigate("/posts"); // Navigate to posts page after successful login
       } else {
         alert("Incorrect Email or Password");
       }
     } catch (err) {
       alert("Login Failed");
     }
-  };
+};
+
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
