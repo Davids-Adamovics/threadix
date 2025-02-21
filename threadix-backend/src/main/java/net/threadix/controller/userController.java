@@ -13,6 +13,10 @@ import net.threadix.service.IUserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -34,4 +38,13 @@ public class userController {
         LoginMessage loginResponse = userService.loginUser(loginDTO);
         return ResponseEntity.ok(loginResponse);
     }
+
+    // // Get logged-in user's profile information
+    // @GetMapping("/profile")
+    // public ResponseEntity<UserDTO> getLoggedInUser(@RequestHeader("Authorization") String authToken) {
+    //     // Assume the auth token contains the user's ID or username
+    //     UserDTO userProfile = userService.getUserProfile(authToken);
+    //     return ResponseEntity.ok(userProfile);
+    // }
+    
 }

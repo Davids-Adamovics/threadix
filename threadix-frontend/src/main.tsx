@@ -1,22 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './index.css'
-import MainPage from './pages/posts/page-post.tsx'
-import Header from './pages/common/Header.tsx'
-import CreatePost from './pages/posts/CreatePost.tsx'
-import PrivateRoute from './pages/Auth/AuthGuard.tsx';
-import AuthenticationPage from './pages/Auth/AuthenticationPage.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./index.css";
+import MainPage from "./pages/posts/page-post.tsx";
+import Header from "./pages/common/Header.tsx";
+import CreatePost from "./pages/posts/CreatePost.tsx";
+import PrivateRoute from "./pages/Auth/AuthGuard.tsx";
+import AuthenticationPage from "./pages/Auth/AuthenticationPage.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<AuthenticationPage />} />
-        <Route path="/posts/create" element={<CreatePost />} />
-        
-        
+
         {/* Private Route to protect /posts and /post/create */}
         <Route element={<PrivateRoute />}>
           <Route path="/posts" element={<MainPage />} />
@@ -24,5 +22,5 @@ createRoot(document.getElementById('root')!).render(
         </Route>
       </Routes>
     </Router>
-  </StrictMode>,
-)
+  </StrictMode>
+);
