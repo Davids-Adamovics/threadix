@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import '../../styles/profile/profile.scss';
 
@@ -23,7 +23,7 @@ const Profile = () => {
 
     if (token) {
       axios
-        .get("http://localhost:8080/api/v1/users/profile", {
+        .get("http://77.37.54.78:8080/api/v1/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {

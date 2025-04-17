@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PostConfig from "../../config/PostConfig";
 import "../../styles/posts/page-post.scss";
 import { FaArrowUp, FaArrowDown, FaCommentAlt } from "react-icons/fa";
-import UploadPost from "./CreatePost";
+// import UploadPost from "./CreatePost";
 
 interface Post {
   postId: number;
