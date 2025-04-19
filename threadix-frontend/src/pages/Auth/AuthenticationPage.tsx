@@ -14,7 +14,7 @@ function Authentication() {
 const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/api/v1/users/login", {
+      const res = await axios.post("http://77.37.54.78:8080/api/v1/users/login", {
         email,
         password,
       });
@@ -36,7 +36,7 @@ const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/users/save", {
+      await axios.post("http://77.37.54.78:8080/api/v1/users/save", {
         username,
         displayName,
         email,

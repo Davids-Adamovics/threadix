@@ -50,7 +50,7 @@ const Profile = () => {
       {/* Left Sidebar */}
       <aside className="profile-sidebar">
         <img
-          src={`http://localhost:8080${user.profilePicture}`}
+          src={`http://77.37.54.78:8080${user.profilePicture}`}
           alt="Profile"
           className="profile-picture"
         />

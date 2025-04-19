@@ -54,13 +54,13 @@ const MainPage: React.FC = () => {
                   <div className="post-image-container">
                     {/* Blurred Background Image */}
                     <img
-                      src={`http://localhost:8080${post.imagePath}`}
+                      src={`http://77.37.54.78:8080${post.imagePath}`}
                       alt="Post Background"
                       className="post-image-background"
                     />
                     {/* Main Foreground Image */}
                     <img
-                      src={`http://localhost:8080${post.imagePath}`}
+                      src={`http://77.37.54.78:8080${post.imagePath}`}
                       alt="Post Image"
                       className="post-image-foreground"
                     />
