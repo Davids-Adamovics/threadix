@@ -24,7 +24,7 @@ const CreatePost = () => {
                 formData.append("file", image);
 
                 const uploadResponse = await axios.post(
-                    "http://localhost:8080/api/posts/upload",
+                    "http://77.37.54.78:8080/api/posts/upload",
                     formData,
                     {
                         headers: { "Content-Type": "multipart/form-data" },
@@ -43,7 +43,7 @@ const CreatePost = () => {
             };
 
             const response = await axios.post(
-                "http://localhost:8080/api/posts",
+                "http://77.37.54.78:8080/api/posts",
                 postData
             );
             setPost(response.data);

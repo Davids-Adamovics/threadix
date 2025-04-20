@@ -1,5 +1,6 @@
 package net.threadix.model;
 
+import java.util.Optional;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +27,7 @@ public class ProfileSettings {
     private enumNotification_settings notificationSettings;
 
     @OneToOne(mappedBy = "profileSettings")
-    private User user; // Optional for bidirectionality
+    private User user;
 
     public ProfileSettings(enumPrivacy_level privacyLevel, enumNotification_settings notificationSettings) {
         this.privacyLevel = privacyLevel;

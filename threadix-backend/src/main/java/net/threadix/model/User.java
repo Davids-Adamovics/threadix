@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "app_user")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -41,7 +41,7 @@ public class User {
     private boolean isAnonymous;
 
     @OneToOne
-    @JoinColumn(name = "profile_settings_id") // Define how it's joined in DB
+    @JoinColumn(name = "profile_settings_id")
     private ProfileSettings profileSettings;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

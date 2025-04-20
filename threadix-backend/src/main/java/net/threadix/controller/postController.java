@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/posts")
 public class postController {
 
-    private static final String UPLOAD_DIR = "src/main/resources/static/uploads/";
+    private static final String UPLOAD_DIR = "threadix-backend/src/main/resources/static/uploads/";
 
     @Autowired
     private IPostService postService;
