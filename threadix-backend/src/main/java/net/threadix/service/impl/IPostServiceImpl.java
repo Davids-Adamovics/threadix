@@ -37,7 +37,8 @@ public class IPostServiceImpl implements IPostService {
         if (postRepo.count() == 0) {
             return new ArrayList<>();
         }
-        return (ArrayList<Post>) postRepo.findAll();
+        return new ArrayList<>(postRepo.findAllByOrderByTimestampDesc());
+
     }
 
     @Override

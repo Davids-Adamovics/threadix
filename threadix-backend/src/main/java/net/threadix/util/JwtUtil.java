@@ -20,7 +20,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))  // 1 hours expiration
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hours expiration
                 .signWith(secretKey)
                 .compact();
     }
@@ -32,13 +32,21 @@ public class JwtUtil {
 
     // Extract username from JWT token
     public String extractUsername(String token) {
-        return extractClaims(token).getSubject();
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token)
+                    .getBody();
+            return claims.getSubject(); // Extracting the username or user identifier
+        } catch (Exception e) {
+            throw new RuntimeException("Error extracting username from token", e);
+        }
     }
 
     // Extract claims (payload) from JWT token
     private Claims extractClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(secretKey)  // Use the secure key for parsing
+                .setSigningKey(secretKey) // Use the secure key for parsing
                 .build()
                 .parseClaimsJws(token)
                 .getBody();

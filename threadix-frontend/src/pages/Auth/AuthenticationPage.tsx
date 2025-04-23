@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/Auth/LoginRegister.scss";
+import UserService from "../../config/axiosConfig.ts";
 
 function Authentication() {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between Login and Register
@@ -11,37 +12,27 @@ function Authentication() {
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
 
-const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const res = await axios.post("http://77.37.54.78:8080/api/v1/users/login", {
-        email,
-        password,
-      });
-
+      const res = await UserService.login(email, password); // login method from UserService config
       // Check if login was successful
       if (res.data.message === "Login Success") {
         // Store the JWT token in localStorage
         localStorage.setItem("authToken", res.data.token); // Store actual token here
-        navigate("/posts"); // Navigate to posts page after successful login
+        navigate("/"); // Navigate to posts page after successful login
       } else {
         alert("Incorrect Email or Password");
       }
     } catch (err) {
       alert("Login Failed");
     }
-};
-
+  };
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      await axios.post("http://77.37.54.78:8080/api/v1/users/save", {
-        username,
-        displayName,
-        email,
-        password,
-      });
+      await UserService.register(username, displayName, email, password);
       alert("User Registered Successfully");
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -116,7 +107,9 @@ const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
 
         <div className="toggle">
           <p onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? "Don't have an account? Register" : "Already have an account? Login"}
+            {isLogin
+              ? "Don't have an account? Register"
+              : "Already have an account? Login"}
           </p>
         </div>
       </div>

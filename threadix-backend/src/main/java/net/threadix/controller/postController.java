@@ -24,12 +24,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@CrossOrigin(origins = "http://localhost:5174")
+@CrossOrigin(origins = {
+        "http://localhost:5174", // dev
+        "http://localhost:3000", // old dev
+        "http://77.37.54.78:5174", // prod
+        "http://77.37.54.78" // prod
+})
 @RestController
 @RequestMapping("/api/posts")
 public class postController {
 
-    private static final String UPLOAD_DIR = "threadix-backend/src/main/resources/static/uploads/";
+    private static final String UPLOAD_DIR = System.getProperty("user.dir").contains("target")
+            ? "/opt/threadix/uploads/" // prod
+            : "uploads/"; // dev
 
     @Autowired
     private IPostService postService;
@@ -51,7 +58,7 @@ public class postController {
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
         Path path = Path.of(UPLOAD_DIR + fileName);
-        
+
         try {
             // Create the upload directory if it doesn't exist
             File uploadDir = new File(UPLOAD_DIR);
