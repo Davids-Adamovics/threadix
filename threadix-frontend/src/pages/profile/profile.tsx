@@ -23,11 +23,11 @@ const Profile = () => {
 
     if (token) {
       axios
-        .get("http://77.37.54.78:8080/api/v1/users/profile", {
+        .get("http://localhost:8080/api/v1/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          console.log("User Data from DB:", response.data);
+          console.log("User Data from DB:", response.data); 
           setUser(response.data);
           setLoading(false);
         })
@@ -50,7 +50,7 @@ const Profile = () => {
       {/* Left Sidebar */}
       <aside className="profile-sidebar">
         <img
-          src={`http://77.37.54.78:8080${user.profilePicture}`}
+          src={`http://localhost:8080${user.profilePicture}`}
           alt="Profile"
           className="profile-picture"
         />

@@ -46,7 +46,6 @@
         padding: 12px;
         font-size: 16px;
         color: #333;
-        border-radius: 8px;
         border: 1px solid #ddd;
         background-color: #fafafa;
         transition: border-color 0.3s ease-in-out;
@@ -113,9 +112,7 @@
   text-align: center;
 }
 
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+.form-control{
   width: 100%;
   padding: 14px;
   font-size: 16px;
@@ -123,9 +120,7 @@ input[type="text"] {
   border: 1px solid #ddd;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="text"]:focus {
+.form-control{
   border-color: #6c7bff;
   outline: none;
 }
