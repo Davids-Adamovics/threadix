@@ -10,6 +10,7 @@ import AuthGuard from "./pages/Auth/AuthGuard.tsx"; // this is your PrivateRoute
 import AuthRedirectGuard from "./pages/Auth/AuthRedirectGuard.tsx"; // you had this wrong
 import AuthenticationPage from "./pages/Auth/AuthenticationPage.tsx";
 import Profile from "./pages/profile/profile.tsx";
+import MentorApplication from "./pages/applications/MentoreApplication.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<MainPage />} />
           <Route path="/post/create" element={<CreatePost />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/mentor-application" element={<MentorApplication />} />
         </Route>
       </Routes>
     </Router>

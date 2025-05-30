@@ -1,89 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 
 .create-post-container {
-    max-width: 750px;
-    margin: 50px auto;
-    padding: 20px; // Ensures padding is applied evenly
-    background-color: var(--background-color);
-    border: 1px solid var(--secondary-accent-color);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box; // Prevents width overflow issues
+  max-width: 750px;
+  margin: 50px auto;
+  padding: 20px; // Ensures padding is applied evenly
+  background-color: var(--background-color);
+  border: 1px solid var(--third-accent-color);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box; // Prevents width overflow issues
 
-    h2 {
-        color: var(--text-heading-color);
-        margin-bottom: 20px;
-    }
+  h2 {
+    color: rgba(255, 255, 255, 0.644);
+    margin-bottom: 20px;
+  }
 
-    .create-post-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 15px; // Adds internal padding for better spacing
+  .create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 15px; // Adds internal padding for better spacing
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            width: 100%;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
 
-            label {
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: var(--text-heading-color);
-            }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: rgb(173, 149, 238);
+      }
 
-            input, textarea {
-                width: calc(100% - 2px); // Ensures input fields don't overflow
-                padding: 10px;
-                border: 1px solid var(--secondary-accent-color);
-                border-radius: 5px;
-                background-color: rgba(255, 255, 255, 0.1);
-                color: var(--text-paragraph-color);
-                font-size: 16px;
-                outline: none;
-                transition: 0.3s ease-in-out;
-                box-sizing: border-box; // Prevents right-side cut-off
-
-                &:focus {
-                    border-color: var(--primary-accent-color);
-                    box-shadow: 0 0 5px var(--primary-accent-color);
-                }
-            }
-
-            textarea {
-                resize: vertical;
-                min-height: 120px;
-            }
-        }
-
-        .submit-button {
-            padding: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            background: var(--secondary-accent-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%; // Ensures button spans properly
-
-            &:hover {
-                background: var(--primary-accent-color);
-            }
-        }
-    }
-
-    .post-success {
-        margin-top: 15px;
+      input,
+      textarea {
+        width: calc(100% - 2px); // Ensures input fields don't overflow
         padding: 10px;
-        background: rgba(140, 255, 140, 0.2);
-        color: #4caf50;
-        border: 1px solid #4caf50;
+        border: 1px solid;
+        border-color: rgba(255, 255, 255, 0.199);
         border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-paragraph-color);
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s ease-in-out;
+        box-sizing: border-box; // Prevents right-side cut-off
+
+        &:focus {
+          border-color: var(--primary-accent-color);
+          box-shadow: 0 0 5px var(--primary-accent-color);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
     }
+
+    .submit-button {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      background: rgb(66, 100, 151);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%; // Ensures button spans properly
+
+      &:hover {
+        background: rgb(48, 72, 109);
+      }
+    }
+  }
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.199);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-paragraph-color);
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: var(--primary-accent-color);
+      box-shadow: 0 0 5px var(--primary-accent-color);
+    }
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: var(--primary-accent-color);
+  }
+
+  .post-success {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(140, 255, 140, 0.2);
+    color: #4caf50;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+  }
 }

@@ -1,5 +1,6 @@
 :root {
-  --background-dark: #1a1a1b;
+  --background-dark: #0e1113;
+  --background-mid: #1e1e1f;
   --background-light: #272729;
   --border-color: #343536;
   --text-color: #d7dadc;
@@ -19,9 +20,9 @@
 }
 
 .post-list {
-  width: 600px;
+  width: 800px;
   max-width: 100%;
-  margin-left: 20px;
+  margin-left: 200px;
 }
 
 .error-message {
@@ -48,18 +49,18 @@
   max-width: 100%;
   height: auto;
   margin-top: 10px;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .post-image-container {
   position: relative;
-  width: 400px; 
-  height: 400px;
+  width: 600px;
+  height: 600px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .post-image-background {
@@ -123,6 +124,51 @@
   font-size: 14px;
   color: var(--text-secondary);
   margin-bottom: 10px;
+}
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-dark);
+}
+
+.sidebar {
+  width: 200px;
+  background-color: var( --background-dark);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-section {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.menu-item {
+  margin: 10px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+}
+
+.menu-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 10px 0;
+}
+
+.menu-heading {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 10px 0 5px 0;
+  text-transform: uppercase;
 }
 
 .post-info {

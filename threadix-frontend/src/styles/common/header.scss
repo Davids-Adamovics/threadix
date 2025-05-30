@@ -2,6 +2,7 @@
   --primary-accent-color: rgba(210, 188, 250, 1);
   --secondary-accent-color: rgba(140, 82, 255, 1);
   --background-color: #0e1113;
+  --border-color: #343536;
   --text-heading-color: rgba(140, 82, 255, 1);
   --text-paragraph-color: rgba(255, 255, 255, 1);
 }
@@ -11,6 +12,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
   padding: 10px 20px;
   height: 80px;
 }

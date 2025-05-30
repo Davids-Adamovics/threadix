@@ -1,4 +1,4 @@
-package main.java.net.threadix.DTO;
+package net.threadix.DTO;
 import net.threadix.model.Post;
 
 import javax.annotation.processing.SupportedOptions;
